@@ -9,7 +9,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/posts/wallet/user/${currentUser?.seller}`)
+                const res = await axios.get(`/api/posts/wallet/user/${currentUser?.seller}`)
                 setWallet(res.data)
                 setTimeout(async () => {
                     if (res.data.Wallet == null) window.location.reload();

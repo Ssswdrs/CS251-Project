@@ -35,7 +35,7 @@ const Changepass = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await axios.put("/auth/Changepass", inputs)
+      await axios.put("/api/auth/Changepass", inputs)
       navigate("/")
     } catch (err) {
       setError(err.response.data)

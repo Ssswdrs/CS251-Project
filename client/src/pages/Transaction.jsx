@@ -8,7 +8,7 @@ const Transaction = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/posts/transaction/user`)
+                const res = await axios.get(`/api/posts/transaction/user`)
                 setTrans(res.data)
             } catch (err) {
                 console.log(err)
@@ -23,8 +23,8 @@ const Transaction = () => {
         const confirmed = window.confirm("Are you sure you want to buy this item?");
         if (confirmed) {
             try {
-                await axios.put(`/posts/money/update/seller`, { price: price, ID: id });
-                await axios.put(`/posts/transaction/update/${id}`, inputTrans)
+                await axios.put(`/api/posts/money/update/seller`, { price: price, ID: id });
+                await axios.put(`/api/posts/transaction/update/${id}`, inputTrans)
                 navigate("/Transaction")
                 window.location.reload();
             } catch (err) {

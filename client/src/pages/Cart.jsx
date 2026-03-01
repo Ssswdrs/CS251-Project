@@ -8,7 +8,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts/cart/user`)
+        const res = await axios.get(`/api/posts/cart/user`)
         setCarts(res.data)
         
       } catch (err) {
@@ -19,7 +19,7 @@ const Cart = () => {
   }, [])
   const handleRemove = async (id) => {
     try {
-      await axios.delete(`/posts/cart/remove/${id}`);
+      await axios.delete(`/api/posts/cart/remove/${id}`);
       navigate("/Cart")
       window.location.reload();
     } catch (err) {

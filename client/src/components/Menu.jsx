@@ -8,7 +8,7 @@ const Menu = ({ GameName }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/posts/other/${GameName}/${GameID}`)
+                const res = await axios.get(`/api/posts/other/${GameName}/${GameID}`)
                 setOthers(res.data)
             } catch (err) {
                 console.log(err)
@@ -24,7 +24,7 @@ const Menu = ({ GameName }) => {
 
     const handleClick = async (id) => {
             try {
-              const res = await axios.get(`/posts/other/${GameName}/${id}`);
+              const res = await axios.get(`/api/posts/other/${GameName}/${id}`);
               setOthers(res.data);
             } catch (err) {
               console.log(err);
