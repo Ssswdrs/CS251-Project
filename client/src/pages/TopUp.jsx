@@ -18,7 +18,7 @@ const TopUp = () => {
     try {
       const formData = new FormData();
       formData.append("file", file)
-      const res = await axios.post(`/upload/slip/`, formData)
+      const res = await axios.post(`/api/upload/slip/`, formData)
       return res.data
     } catch (err) {
       console.log(err)
@@ -34,7 +34,7 @@ const TopUp = () => {
   const handleComfirmSlip = async e => {
     e.preventDefault()
     try {
-      await axios.put(`/posts/money/update/topup/admin`, { money: inputs.money, userID: inputs.id })
+      await axios.put(`/api/posts/money/update/topup/admin`, { money: inputs.money, userID: inputs.id })
       navigate("/TopUp")
       window.location.reload();
     } catch (err) {

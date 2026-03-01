@@ -33,8 +33,8 @@ const Single = () => {
     const fetchData = async () => {
       try {
         window.scrollTo(0, 0);
-        const res = await axios.get(`/posts/${GameID}`);
-        const res1 = await axios.get(`/posts/wallet/user/${currentUser?.seller}`);
+        const res = await axios.get(`/api/posts/${GameID}`);
+        const res1 = await axios.get(`/api/posts/wallet/user/${currentUser?.seller}`);
         if (!(/https:\/\/line\.me/.test(res.data.info) || /https:\/\/www\.instagram\.com\//.test(res.data.info) || /https:\/\/www\.facebook\.com\//.test(res.data.info))) {
           res.data.info = null
         }
@@ -58,7 +58,7 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${GameID}/${post.ID}`);
+      await axios.delete(`/api/posts/${GameID}/${post.ID}`);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -75,7 +75,7 @@ const Single = () => {
     const confirmed = window.confirm("Are you sure you want to add this item to your Cart?");
     if (confirmed) {
       try {
-        await axios.post("/posts/cart", inputCart);
+        await axios.post("/api/posts/cart", inputCart);
         var elements = document.getElementsByClassName('button-85');
         if (elements.length > 0) {
           var element = elements[0];
@@ -94,7 +94,7 @@ const Single = () => {
 
   const handleChatHistory = async (sellerid, gameid) => {
     try {
-      await axios.post(`/posts/chat/seller/buyer/addChatHistory` , {id:sellerid,gameid:gameid,date:"GameID: "+gameid+" Date: "+moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")})
+      await axios.post(`/api/posts/chat/seller/buyer/addChatHistory` , {id:sellerid,gameid:gameid,date:"GameID: "+gameid+" Date: "+moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")})
 
     } catch (err) {
       console.log(err);
@@ -106,9 +106,9 @@ const Single = () => {
     if (confirmed) {
       try {
         if (price <= money.Wallet) {
-          await axios.delete(`/posts/cart/remove/${id}`);
-          await axios.put(`/posts/money/update/${GameID}`, { price: price, buyerID: currentUser?.ID });
-          await axios.post("/posts/transaction", inputTrans);
+          await axios.delete(`/api/posts/cart/remove/${id}`);
+          await axios.put(`/api/posts/money/update/${GameID}`, { price: price, buyerID: currentUser?.ID });
+          await axios.post("/api/posts/transaction", inputTrans);
 
           var elements = document.getElementsByClassName('button-85');
           if (elements.length > 0) {

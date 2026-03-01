@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import ReactQuill from 'react-quill';
+import ReactQuill from 'react-quill-new';
 import axios from 'axios'
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -39,7 +39,7 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file)
-      const res = await axios.post("/upload", formData)
+      const res = await axios.post("/api/upload", formData)
       return res.data
     } catch (err) {
       console.log(err)
@@ -52,7 +52,7 @@ const Write = () => {
 
     try {
       state
-        ? await axios.put(`/posts/${state.GameID}`, {
+        ? await axios.put(`/api/posts/${state.GameID}`, {
           title,
           Desc: value,
           Username,
@@ -65,7 +65,7 @@ const Write = () => {
           img: file ? imgUrl : "",
           Date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         })
-        : await axios.post(`/posts/`, {
+        : await axios.post(`/api/posts/`, {
           title,
           Desc: value,
           Username,
